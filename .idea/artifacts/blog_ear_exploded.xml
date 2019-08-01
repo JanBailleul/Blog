@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="blog:ear exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/blog_ear_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="blog/javaeeApplication/javaEEApplication" />
+      <element id="directory" name="web.war">
+        <element id="artifact" artifact-name="blog:war exploded" />
+      </element>
+      <element id="directory" name="lib">
+        <element id="library" level="project" name="JAX-WS-Glassfish / JAX-WS 2.2 RI / Metro 1.X / JWSDP 2.2" />
+      </element>
+    </root>
+  </artifact>
+</component>
