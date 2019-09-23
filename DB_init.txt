@@ -1,0 +1,14 @@
+To log on to the database-RDBMS via DataGrip:
+Name: @localhost (MySQL-type of Database)
+Host: localhost
+Port: 3306
+User: "root"
+Password: ""
+Database: Blog
+URL: jdbc:mysql://localhost:3306/Blog
+
+Usernames (= 1) and passwords (= 2) to log on via the Log In-Screen of the website-part of this project:
+(a) "janb", "janb0123"
+(b) "test", "test"
+(c) "writer01", "writer0123"
+(d) "guest", "guest"

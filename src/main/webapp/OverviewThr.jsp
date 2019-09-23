@@ -1,14 +1,12 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
-  User: JanB
-  Date: 01/08/2019
-  Time: 15:46
+  User: Jan Bailleul
+  Date: 19/09/2019
+  Time: 22:15
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="java.time.LocalDateTime" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>The Java Blog</title>
@@ -24,7 +22,7 @@
 
 <br /><br /><br /><br /><br /><br />
 <span style="position: absolute; left: 17.5%">Welcome, ${NameID}</span>
-<span style="position: absolute; left: 33.5%">Profiles of the Blog-Writers</span>
+<span style="position: absolute; left: 33.5%">Overview of Threads in this Blog</span>
 
 <br /><br />
 
@@ -46,38 +44,69 @@
     </form>
 </div>
 
-
 <p style="position: absolute; width: 49%; left: 33.5%; background-color: darkgrey; color: white; border: 1px solid black">
-    This is the Profile for Blog-Writer: ${nickNM}
+    This is the Overview of Threads for this entire website (out of the database): ${nickNM}
 </p>
 
 <div style="position: relative; width: 49.75%; top: 40px; left: 33.15%; background-color: white; color: black; border: 1px solid black">
 
     <img src="f2.png" style="margin: 3px; margin-bottom: 20px; border: 1px solid black; width: 70px; height: 70px" align="left"></img><br /><br />
     <div style="position: relative; top: 45px; left: -73px; height: 35px">
-    <span style="font-weight: bold">Student</span>
+        <span style="font-weight: bold">Student</span>
     </div>
 
-    <span style="font-weight: bold; position: relative; top: -73px">Profile Information for Blog-Writer</span>
+    <span style="font-weight: bold; position: relative; top: -73px">Overview for the Threads of this entire Blog</span>
 
-    <ul style="position: relative; left: 65px; top: -73px; list-style-type: square">
+    <br /><br />
 
-    <c:forEach var="profBn" items="${prof}">
-            <li>Profile-Name:</li>
-                <c:out value="${profBn.login_name}" /> <c:out value="${profBn.login_secondNm}" />,
-                nicknamed: <c:out value="${profBn.nickname}" /><br /><br />
-            <li>E-mailaddress:</li>
-                <a href="mailto:<c:out value="${profBn.emailAddrs}" />">
-                        <c:out value="${profBn.login_name}" /> <c:out value="${profBn.login_secondNm}" /></a><br /><br />
-            <li>Posts (i.e. number of Blog-messages in this website for Java Bloggers): </li>
-    </c:forEach>
-        ${msgCount}
-    </ul>
+    <form method="GET" action="/ReverseServlet/HelloMVC" style="position: relative; left: 78px; top: -73px">
+        <span style="position: absolute; left: 0px">Name of the Blogger:</span><br />
+             <select name="nickNM">
+                 <c:forEach items="${totalArray}" var="blogBn">
+                     <option value="${blogBn.name}"
+                          <c:if test="${blogBn.name eq selectedListName}">selected="selected"</c:if>
+                           >
+                           <c:out value="${blogBn.name}" />
+
+                     </option>
+                 </c:forEach>
+             </select>
+             <br/><br/>
+
+
+         Thread-Name to choose:<br />
+              <select name="Thr_id">
+                  <c:forEach items="${totalArray}" var="blogBn">
+                      <option value="${blogBn.threadNr}"
+                          <c:if test="${blogBn.name eq selectedListName}">selected="selected"</c:if>
+                          >
+                          <c:out value="${blogBn.threadNr}" />
+                      </option>
+                  </c:forEach>
+              </select>
+
+         <br/><br />
+         Select this numbered button to reach your favourite Blog and selected content-information:
+         <br />
+
+        <input name="NameID" type="text" readonly="readonly" value="${NameID}" style="visibility: hidden; width: 0px" />
+
+        <br />
+
+         <input name="btnHomePage"
+             type="submit"
+             value="Choose above and press button"
+             title="View the selected Blog-Writer posts" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer" />
+         <br /><br />
+    </form>
+
+
+    <br /><br /><br /><br />
 
     <div style="position: relative; top: -75px">
         <hr />
-        Signature: <br />Java EE/JSP is 1337!<br />
 
+        Signature: <br />Java EE/JSP is 1337!<br />
         <%--
         <button name="btnHomePage" onclick="history.go(-1)" title="Watch the Blog of this Blog-Writer" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer">Blog</button>
         <button name="btnEmailMeGeneral" onclick="top.location('EmailMe.jsp')" title="Email this Blog-writer" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer">Email Me</button>
@@ -86,7 +115,5 @@
     </div>
 </div>
 
-
 </body>
 </html>
-

@@ -8,12 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>The Java Blog</title>
 </head>
 <body>
-    Hello Form
-    <form method="POST">
-        <input type="text" name="name" />
+Hello Form: <span style="font-weight: bold">Please insert a correct username/password!
+    (Error message: ${errorMessage})</span>
+    <form method="POST" action="HelloMVC">
+        <br />
+        Username: <input type="text" name="userName" style="position: absolute; left: 100px"/><br /><br />
+        Password: <input type="password" name="password" style="position: absolute; left: 100px" /><br /><br />
         <input type="submit" value="submit" />
     </form>
 
