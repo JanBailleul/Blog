@@ -3,12 +3,13 @@ package ex0303;
 import java.io.*;
 
 import javax.script.ScriptContext;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
 import static java.sql.DriverManager.println;
 
-@WebServlet(name = "/Reverse")
+@WebServlet(name="ReverseServlet", value = "/ReverseServlet")
 public class ReverseServlet extends HttpServlet {
    protected void doGet(HttpServletRequest request, HttpServletResponse response)
          throws IOException {
@@ -28,7 +29,4 @@ public class ReverseServlet extends HttpServlet {
          out.println("</body></html>");
       }
    }
-
-
-
 }

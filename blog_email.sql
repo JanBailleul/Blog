@@ -1,0 +1,13 @@
+INSERT INTO blog.email (PK_email, nick, emailADD, msg, TM) VALUES (1, 'janb', 'jan.bailleul2@gmail.com', 'Just testing!', '2019-09-23 14:48:30');
+INSERT INTO blog.email (PK_email, nick, emailADD, msg, TM) VALUES (2, 'janb', 'jan.bailleul2@gmail.com', 'Just testing!', '2019-09-23 14:59:26');
+INSERT INTO blog.email (PK_email, nick, emailADD, msg, TM) VALUES (3, 'guest', 'jan.bailleul2@gmail.com', 'Hi there! I read your message on this Blog...', '2019-09-23 14:59:52');
+INSERT INTO blog.email (PK_email, nick, emailADD, msg, TM) VALUES (4, 'guest', 'jan.bailleul2@gmail.com', 'Hi there, about your email!', '2019-09-23 15:02:26');
+INSERT INTO blog.email (PK_email, nick, emailADD, msg, TM) VALUES (5, 'guest', 'jan.bailleul2@gmail.com', 'Hi there, about your email!', '2019-09-23 15:03:34');
+INSERT INTO blog.email (PK_email, nick, emailADD, msg, TM) VALUES (6, 'guest', 'jan.bailleul2@gmail.com', 'Hi and hello to you to!', '2019-09-23 15:03:52');
+INSERT INTO blog.email (PK_email, nick, emailADD, msg, TM) VALUES (7, 'guest', 'jan.bailleul2@gmail.com', 'Hi and hello to you to!', '2019-09-23 15:06:39');
+INSERT INTO blog.email (PK_email, nick, emailADD, msg, TM) VALUES (8, 'guest', 'jan.bailleul2@gmail.com', 'Hi there, about your email!', '2019-09-23 15:06:40');
+INSERT INTO blog.email (PK_email, nick, emailADD, msg, TM) VALUES (9, 'guest', 'jan.bailleul2@gmail.com', 'Hi there! I read your message on this Blog...', '2019-09-23 15:06:41');
+INSERT INTO blog.email (PK_email, nick, emailADD, msg, TM) VALUES (10, 'janb', 'jan.bailleul2@gmail.com', 'Just testing!', '2019-09-23 15:06:42');
+INSERT INTO blog.email (PK_email, nick, emailADD, msg, TM) VALUES (11, 'janb', 'jan.bailleul2@gmail.com', 'Quick testing Testing!', '2019-09-23 15:06:43');
+INSERT INTO blog.email (PK_email, nick, emailADD, msg, TM) VALUES (12, 'janb', 'jan.bailleul2@gmail.com', 'Quick test of this emailprogram', '2019-09-23 15:06:44');
+INSERT INTO blog.email (PK_email, nick, emailADD, msg, TM) VALUES (13, 'guest', 'jan.bailleul2@gmail.com', 'Hi there!', '2019-09-23 15:07:06');

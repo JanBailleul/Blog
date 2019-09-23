@@ -1,0 +1,1 @@
+INSERT INTO blog.profile (PK_profile, login_name, login_secondNm, nickname, emailAddrs) VALUES (1, 'Jan', 'Bailleul', 'janb', 'jan.bailleul2@gmail.com');
