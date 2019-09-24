@@ -1,11 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
-  User: JanB
-  Date: 06/09/2019
-  Time: 13:21
+  User: janb
+  Date: 24/09/2019
+  Time: 10:28
   To change this template use File | Settings | File Templates.
 --%>
-
 <html>
 <head>
     <title>The Java Blog</title>
@@ -21,7 +21,7 @@
 
 <br /><br /><br /><br /><br /><br />
 <span style="position: absolute; left: 17.5%">Welcome, ${NameID}</span>
-<span style="position: absolute; left: 33.5%">Overview of database for Blog-Posts: </span>
+<span style="position: absolute; left: 33.5%">Emails (Personal Messages) from you (1st part in the part under this title) and for you (2nd): </span>
 <br /><br />
 
 <p style="position: absolute; width: 15%; left: 17.5%; background-color: darkgrey; color: white; border: 1px solid black">
@@ -41,60 +41,76 @@
         <input name="btnOverviewGeneral" type="submit" value="Overview of Threads" title="Watch the Thread Overview" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer" /><br />
         <input name="btnWebsiteOverview" type="submit" value="Website Overview" title="Watch the Website Overview" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer" />
     </form>
-    <!--<button name="btnHomePage" onclick="top.location('HelloMVC')" title="Watch the Home-Page of this Blog" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer">Website Home-Page</button><br />
-    <button name="btnProfileGeneral" onclick="top.location('Profile.jsp')" title="Watch the Profile of this Blog-Writer" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer">Profile Page</button><br />
-    <button name="btnPostMessage" onclick="top.location('PostMessage.jsp')" title="Write a new message in this Blog-Thread" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer">New Message</button><br />
-    <button name="btnEmailMeGeneral" onclick="top.location('EmailMeGeneral.jsp')" title="Send Emails" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer">Email Page</button><br />
-    <button name="btnOverviewGeneral" onclick="top.location('OverviewThreadGeneral.jsp')" title="Watch the Thread Overview" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer">Overview of Threads</button><br />
-    <button name="btnWebsiteOverview" onclick="top.location('OverviewWebsite.jsp')" title="Watch the Website Overview" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer">Website Overview</button><br />
-    -->
 </div>
 
+<jsp:useBean id="totalArray2" scope="request" type="java.util.List"/>
+<c:forEach var="blogmBn" items="${totalArray2}">
+
     <p style="position: absolute; width: 49%; left: 33.5%; background-color: darkgrey; color: white; border: 1px solid black">
-        Time of post: (time of database-server)
-        // Name of the author: ${nickNM} <br /></p>
+        Time of post: <c:out value="${blogmBn.timestamp}" />
+        // Name of the writer: <c:out value="${blogmBn.nick}" /> (OUTBOX: email written by yourself)<br /></p>
 
     <div style="position: relative; width: 49.75%; top: 40px; left: 33.15%; background-color: white; color: black; border: 1px solid black">
 
-        <img src="f2.png" style="margin: 3px; margin-bottom: 20px; border: 1px solid black; width: 70px; height: 70px" align="left"></img><br /><br />
+        <img src="f2.png" style="margin: 3px; margin-bottom: 20px; border: 1px solid black; width: 70px; height: 70px" align="left"/><br /><br />
         <div style="position: relative; top: 45px; left: -73px; height: 35px">
             <span style="font-weight: bold">Student</span>
         </div>
 
+        <span style="font-weight: bold; position: relative; top: -70px; height: 20px">Personal Message # <c:out value="${blogmBn.PK_email}" />:<br /></span>
 
-        <span style="font-weight: bold; position: relative; top: -70px; height: 20px">Java Blog #: input your Thread-name ("Topic"), and Message here...
-        <br /></span>
-        <div style="position: relative; top: -60px; left: 80px; width: 90%"><p>
-
-            <form method="GET" action="/ReverseServlet/HelloMVC">
-
-                Nickname: <br />
-                    <input type="text" readonly="readonly" name="NameID" maxlength="100" size="99" value="${NameID}" /><br /><br />
-
-                Topic: <br />
-                    <input type="text" name="Thr_id" maxlength="100" size="99" value="${Thr_id}" /><br /><br />
-
-                Message in this Topic (in this Thread):<br />
-                    <textarea name="posted" rows="10" cols="80">Input your message here: ...</textarea>
-                    <br /><br />
-                <input type="text" readonly="readonly" name="nickNM" maxlength="100" size="99" value="${nickNM}" style="visibility: hidden; width: 0px" /><br /><br />
-
-                <input name="btnPostMessageAfter" type="submit" value="Post Message!" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer">
-            </form>
+        <div style="position: relative; top: -60px; left: 80px; width: 90%">
+            <p style="text-align: justify; width: 90%">
+                <c:out value="${blogmBn.msg}" />
+            </p>
         </div>
+
         <br /><br /><hr />
         Signature: <br />Java EE/JSP is 1337!<br />
 
-        <br />
-    <%--
-        <button name="btnProfile" onclick="top.location('Profile.jsp')" title="Watch the Profile of this Blog-Writer" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer">Profile</button>
-        <button name="btnEmailMeGeneral" onclick="top.location('EmailMe.jsp')" title="Email this Blog-writer" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer">Email Me</button>
-        <button name="btnOverviewGeneral" onclick="top.location('OverviewThr.jsp')" title="View other Threads by this Blog-Writer" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer">Threads Posted</button>
-        --%>
+
     </div>
 
     <br /><br />
 
+</c:forEach>
 
+<c:forEach var="blogmBn" items="${totalArray}">
+
+    <p style="position: absolute; width: 49%; left: 33.5%; background-color: darkgrey; color: white; border: 1px solid black">
+    Time of post: <c:out value="${blogmBn.timestamp}" />
+    // Name of the reader: <c:out value="${blogmBn.nick}" /> (INBOX: emails from destination) <br /></p>
+
+    <div style="position: relative; width: 49.75%; top: 40px; left: 33.15%; background-color: white; color: black; border: 1px solid black">
+
+    <img src="f2.png" style="margin: 3px; margin-bottom: 20px; border: 1px solid black; width: 70px; height: 70px" align="left"/><br /><br />
+    <div style="position: relative; top: 45px; left: -73px; height: 35px">
+    <span style="font-weight: bold">Student</span>
+    </div>
+
+        <span style="font-weight: bold; position: relative; top: -70px; height: 20px">Personal Message # <c:out value="${blogmBn.PK_email}" />:<br /></span>
+
+        <div style="position: relative; top: -60px; left: 80px; width: 90%">
+            <p style="text-align: justify; width: 90%">
+                <c:out value="${blogmBn.msg}" />
+            </p>
+        </div>
+
+    <br /><br /><hr />
+        Signature: <br />Java EE/JSP is 1337!<br />
+
+
+    <%--
+        <button name="btnProfile" onclick="top.location('/ReverseServlet/HelloMVC?btnProfileGeneral=Profile+Page')" title="Watch the Profile of this Blog-Writer" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer">Profile</button>
+        <button name="btnEmailMeGeneral" onclick="top.location('EmailMe.jsp')" title="Email this Blog-writer" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer">Email Me</button>
+        <button name="btnOverviewGeneral" onclick="top.location('OverviewThr.jsp')" title="View other Threads by this Blog-Writer" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer">Threads Posted</button>
+    --%>
+
+    </div>
+
+    <br /><br />
+
+</c:forEach>
+<br /><br />
 </body>
 </html>

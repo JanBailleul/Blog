@@ -40,7 +40,8 @@
         <input name="btnHomePage" type="submit" value="Website Home-Page" title="Watch the Home-Page of this Blog" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer" /><br />
         <input name="btnProfileGeneral" type="submit" value="Profile Page" title="Watch the Profile of this Blog-Writer" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer" /><br />
         <input name="btnPostMessage" type="submit" value="New Message" title="Write a new message in this Blog-Thread" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer" /><br />
-        <input name="btnEmailMeGeneral" type="submit" value="Email Page" title="Send Emails" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer" /><br />
+        <input name="btnEmailMeGeneral" type="submit" value="Send Email Page" title="Send Emails" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer" /><br />
+        <input name="btnReadEmail" type="submit" value="Read Email" title="Read Emails" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer" /><br />
         <input name="btnOverviewGeneral" type="submit" value="Overview of Threads" title="Watch the Thread Overview" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer" /><br />
         <input name="btnWebsiteOverview" type="submit" value="Website Overview" title="Watch the Website Overview" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer" />
     </form>
@@ -48,7 +49,7 @@
 
 
 <p style="position: absolute; width: 49%; left: 33.5%; background-color: darkgrey; color: white; border: 1px solid black">
-    This is the Profile for Blog-Writer: ${nickNM}
+    This is the Page to email to your favourite Blogger of this Java Blog: ${nickNM}
 </p>
 
 <div style="position: relative; width: 49.75%; top: 40px; left: 33.15%; background-color: white; color: black; border: 1px solid black">
@@ -75,16 +76,15 @@
         </select>
         <br/><br/>
 
-         Input your own email-address (to return your email to, from the Blogger):<br /><br />
-             <input type="text" name="emailADD" maxlength="100" size="99" /><br /><br />
-
+        Name of the sender of this email (the writer of this email):<br /><br />
+             <input type="text" name="dest_user" maxlength="100" size="99" readonly="readonly" value="${NameID}"/><br /><br />
 
          Text this to the Blogger:<br /><br />
              <textarea name="postedMail" rows="10" cols="80">Input your message here: ...</textarea>
              <br /><br />
 
-         <input name="NameID" type="text" readonly="readonly" value="${NameID}" style="visibility: hidden; width: 0px" />
          <input name="Thr_id" type="text" readonly="readonly" value="${Thr_id}" style="visibility: hidden; width: 0px" />
+         <input name="NameID" type="text" readonly="readonly" value="${NameID}" style="visibility: hidden; width: 0px" />
 
          Send your email now to the Blogger:<br /><br />
             <input name="btnEmailMeGeneralAfter" type="submit" value="Send Email To Blogger" style="background-color: yellow; border: 1px solid black; margin: 3px; cursor: pointer" />

@@ -2,9 +2,11 @@ package be.intecbrussel.Reverse.servlet;
 
 
 import be.intecbrussel.bean.BlogBean;
+import be.intecbrussel.bean.BlogEmailBean;
 import be.intecbrussel.bean.BlogLoginBean;
 import be.intecbrussel.bean.BlogProfileBean;
 import be.intecbrussel.dao.BlogDAO;
+import be.intecbrussel.dao.BlogEmailDAO;
 import be.intecbrussel.dao.BlogLoginDAO;
 import be.intecbrussel.dao.BlogProfileDAO;
 import be.intecbrussel.service.HelloService;
@@ -31,16 +33,19 @@ public class ReverseServlet extends HttpServlet {
     private BlogDAO dao;
     private BlogLoginDAO loginDao;
     private BlogProfileDAO profileDao;
+    private BlogEmailDAO emailDao;
 
     public void init() throws ServletException {
         dao = new BlogDAO();
         loginDao = new BlogLoginDAO();
         profileDao = new BlogProfileDAO();
+        emailDao = new BlogEmailDAO();
 
         try {
             dao.setDriver("com.mysql.jdbc.Driver");
             loginDao.setDriver("com.mysql.jdbc.Driver");
             profileDao.setDriver("com.mysql.jdbc.Driver");
+            emailDao.setDriver("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -48,12 +53,17 @@ public class ReverseServlet extends HttpServlet {
         dao.setPassword("");
         loginDao.setPassword("");
         profileDao.setPassword("");
+        emailDao.setPassword("");
+
         dao.setUrl("jdbc:mysql://localhost:3306/Blog");
         loginDao.setUrl("jdbc:mysql://localhost:3306/Blog");
         profileDao.setUrl("jdbc:mysql://localhost:3306/Blog");
+        emailDao.setUrl("jdbc:mysql://localhost:3306/Blog");
+
         dao.setUser("root");
         loginDao.setUser("root");
         profileDao.setUser("root");
+        emailDao.setUser("root");
 
 
     }
@@ -63,6 +73,7 @@ public class ReverseServlet extends HttpServlet {
 
     BlogLoginBean blbean = new BlogLoginBean();
     BlogProfileBean bpbean = new BlogProfileBean();
+    BlogEmailBean bmbean = new BlogEmailBean();
 
 
     public ArrayList<BlogBean> displayBlogItems(String param, String thrd) {
@@ -87,6 +98,32 @@ public class ReverseServlet extends HttpServlet {
             blogBn.setTimestamp(i.getTimestamp());
 
             totalArray.add(blogBn);
+
+        }
+        return totalArray;
+    }
+
+    public ArrayList<BlogEmailBean> displayEmails(String param) {
+
+        List<BlogEmailBean> items = null;
+        try {
+            items = emailDao.getEmails(param);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<BlogEmailBean> totalArray = new ArrayList<BlogEmailBean>();
+
+        for (BlogEmailBean i : items) {
+            BlogEmailBean blogmBn = new BlogEmailBean();
+
+            blogmBn.setPK_email(i.getPK_email());
+            blogmBn.setNick(i.getNick());
+            blogmBn.setDest_user(i.getDest_user());
+            blogmBn.setMsg(i.getMsg());
+            blogmBn.setTimestamp(i.getTimestamp());
+
+            totalArray.add(blogmBn);
 
         }
         return totalArray;
@@ -254,7 +291,7 @@ public class ReverseServlet extends HttpServlet {
             request.setAttribute("Thr_id", request.getParameter("Thr_id"));
 
             try {
-                dao.addEmailMsg(request.getParameter("nickNM"), request.getParameter("emailADD"),
+                dao.addEmailMsg(request.getParameter("nickNM"), request.getParameter("NameID"),
                         request.getParameter("postedMail"));
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -265,6 +302,18 @@ public class ReverseServlet extends HttpServlet {
             request.getRequestDispatcher("/HelloResult.jsp").forward(request, response);
 
         }
+        if(request.getParameter("btnReadEmail") != null) {
+
+            request.setAttribute("nickNM", request.getParameter("nickNM"));
+            request.setAttribute("NameID", request.getParameter("NameID"));
+            request.setAttribute("Thr_id", request.getParameter("Thr_id"));
+
+            request.setAttribute("totalArray", displayEmails(request.getParameter("NameID")));
+            request.setAttribute("totalArray2", displayEmails(request.getParameter("nickNM")));
+
+            request.getRequestDispatcher("/ReadEmail.jsp").forward(request, response);
+        }
+
         if(request.getParameter("btnOverviewGeneral") != null) {
 
             request.setAttribute("nickNM", request.getParameter("nickNM"));

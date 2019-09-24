@@ -2,6 +2,7 @@ package be.intecbrussel.dao;
 
 import be.intecbrussel.bean.BlogBean;
 import be.intecbrussel.bean.BlogCountBean;
+import be.intecbrussel.bean.BlogEmailBean;
 
 import javax.servlet.ServletException;
 import java.sql.*;
@@ -19,7 +20,7 @@ public class BlogDAO {
 
     private static final String INSERT_MSG_QUERY = "insert into msg (Name, Msg, ThreadNr) VALUES (?,?,?)";
 
-    private static final String INSERT_MSG_QUERY_EMAIL = "insert into email (Nick, emailADD, Msg) VALUES (?,?,?)";
+    private static final String INSERT_MSG_QUERY_EMAIL = "insert into email (Nick, dest_user, Msg) VALUES (?,?,?)";
 
     public void setUrl(String url) {
         this.url = url;
@@ -59,6 +60,7 @@ public class BlogDAO {
             return messages;
         }
     }
+
 
     public List<BlogBean> getBlogItems() throws SQLException {
         String qry = "select PK, Name, Msg, ThreadNr, TM from msg GROUP BY Name, ThreadNr";
@@ -143,11 +145,11 @@ public class BlogDAO {
         }
     }
 
-    public void addEmailMsg(String nm, String emailADD, String msg) throws SQLException {
+    public void addEmailMsg(String nm, String dest_user, String msg) throws SQLException {
         try (Connection con = getConnection();
              PreparedStatement stmt = con.prepareStatement(INSERT_MSG_QUERY_EMAIL)) {
             stmt.setString(1, nm);
-            stmt.setString(2, emailADD);
+            stmt.setString(2, dest_user);
             stmt.setString(3, msg);
             stmt.executeUpdate();
         }
